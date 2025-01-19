@@ -20,4 +20,4 @@ yarn-error.log*
 next-env.d.ts
 
 stuff.js
-coverage
+/coverage

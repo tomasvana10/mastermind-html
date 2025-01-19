@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "prettier": "npx prettier . --write",
+    "prepare": "husky && husky install"
   },
   "repository": {
     "type": "git",
@@ -38,5 +40,8 @@
     "jest-puppeteer": "^11.0.0",
     "prettier": "3.4.2",
     "puppeteer": "^24.1.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
