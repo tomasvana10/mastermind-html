@@ -16,8 +16,8 @@
   },
   "lint-staged": {
     "*.{js,json,css,md,html,mjs}": [
-      "prettier --write",
-      "eslint --fix"
+      "npx prettier . --write",
+      "npx eslint --fix"
     ]
   },
   "repository": {

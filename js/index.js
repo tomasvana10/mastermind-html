@@ -10,6 +10,7 @@ const CODE_PEG_COLOURS = ["red", "yellow", "blue", "green", "black", "azure"];
  * @typedef {"black" | "ghostwhite"} KeyPegColour
  */
 const KEY_PEG_COLOURS = ["black", "ghostwhite"];
+KEY_PEG_COLOURS;
 
 let winDialog, failureDialog, keybindsDialog, howToPlayDialog;
 
