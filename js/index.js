@@ -9,7 +9,7 @@ const CODE_PEG_COLOURS = ["red", "yellow", "blue", "green", "black", "azure"];
 /**
  * @typedef {"black" | "ghostwhite"} KeyPegColour
  */
-const KEY_PEG_COLOURS = ["black", "white"];
+const KEY_PEG_COLOURS = ["black", "ghostwhite"];
 
 let winDialog, failureDialog, keybindsDialog, howToPlayDialog;
 
@@ -60,27 +60,6 @@ document.onkeydown = event => {
   }
 };
 
-/* TEST FUNCTIONS */
-function test_generatePegs() {
-  const el = document.getElementById("guess-interface");
-  for (colour of CODE_PEG_COLOURS) {
-    el.appendChild(createCodePeg(colour));
-  }
-  for (colour of KEY_PEG_COLOURS) {
-    el.appendChild(createKeyPeg(colour));
-  }
-  document
-    .querySelectorAll(".code-peg-holder")
-    .forEach(holder =>
-      holder.appendChild(createCodePeg(randomChoice(CODE_PEG_COLOURS)))
-    );
-  document
-    .querySelectorAll(".key-peg-holder")
-    .forEach(holder =>
-      holder.appendChild(createKeyPeg(randomChoice(KEY_PEG_COLOURS)))
-    );
-}
-
 /* DOM-RELATED FUNCTIONS */
 function applyButtonListeners() {
   document.getElementById("deleteCodePegButton").onclick = deleteCodePeg;
@@ -96,7 +75,7 @@ function createCodePickerPegs() {
   const picker = document.querySelector("#code-peg-picker .picker");
   for (const colour of CODE_PEG_COLOURS)
     picker.appendChild(
-      createCodePeg(colour, true, () => addCodePeg(colour), true)
+      createCodePeg(colour, true, () => addCodePeg(colour), true),
     );
 }
 
@@ -105,8 +84,8 @@ function makeGithubLinksClickable() {
     .querySelectorAll("#github-clickable, #githubButton")
     .forEach(node =>
       node.addEventListener("click", () =>
-        window.open(MY_GITHUB, "_blank").focus()
-      )
+        window.open(MY_GITHUB, "_blank").focus(),
+      ),
     );
 }
 
@@ -167,13 +146,13 @@ function createCodePeg(
   colour,
   cursorPointer = false,
   onClick = null,
-  tabIndex = false
+  tabIndex = false,
 ) {
   const peg = document.createElement("div");
   peg.classList.add("code-peg");
   peg.style.background = `radial-gradient(circle at 57.5% 40%, ${colour}, ${shadeColour(
     colour,
-    -30
+    -30,
   )} 70%, ${shadeColour(colour, -50)})`;
   peg.style.boxShadow = `
     -7px 7px 15px 2px rgba(0, 0, 0, 0.6),
@@ -197,7 +176,7 @@ function createKeyPeg(colour) {
   peg.classList.add("key-peg");
   peg.style.background = `radial-gradient(circle at 60% 30%, ${colour}, ${shadeColour(
     colour,
-    -40
+    -40,
   )} 150%, ${shadeColour(colour, -50)})`;
   peg.style.boxShadow = `
     -3px 3px 9px 2px rgba(0, 0, 0, 0.6),
@@ -302,7 +281,7 @@ function setKeyPegs(evaluationMap) {
       pickingFrom === "correctPositionAndColour" ? "black" : "ghostwhite";
 
     const firstAvailable = [...keyPegHolders.children].find(
-      node => !node.children.length
+      node => !node.children.length,
     );
     firstAvailable.appendChild(createKeyPeg(keyPegColour));
     evaluationMap[pickingFrom]--;
@@ -365,7 +344,7 @@ function submitGuess() {
   if (postGameConclusion) return;
   if (codebreakerCode.length < GUESS_SLOTS)
     return alert(
-      `Error: Your guess must be equivalent to the amount of guess slots (${GUESS_SLOTS}).`
+      `Error: Your guess must be equivalent to the amount of guess slots (${GUESS_SLOTS}).`,
     );
   const evaluation = evaluateGuess();
   setKeyPegs(JSON.parse(JSON.stringify(evaluation)));
@@ -385,7 +364,7 @@ function submitGuess() {
     modalOpen = true;
     failureDialog.insertBefore(
       createCodebreakerPegSequenceElement(),
-      failureDialog.lastElementChild
+      failureDialog.lastElementChild,
     );
     postGameConclusion = true;
   } else {
@@ -406,7 +385,7 @@ function shadeColour(color, percent) {
 
   return `rgb(${Math.min(255, Math.max(0, R))}, ${Math.min(
     255,
-    Math.max(0, G)
+    Math.max(0, G),
   )}, ${Math.min(255, Math.max(0, B))})`;
 }
 
