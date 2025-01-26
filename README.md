@@ -9,10 +9,11 @@ Play the popular code-breaking game in your browser!
 - Fully responsive layout — works on phone, tablet and computer screens.
 - Has key bindings for ease-of-access.
 - Supports <kbd>Tab</kbd> interactions.
+- Configurable
 
 ## Todo
 
-- Add settings for game slices, guess slots, and colourblind modes (using cookies)
-- Add game stat tracking (using cookies)
-- Implement testing framework
-- Add as a route (e.g. /mastermind) to my github.io website (and to my personal website)
+- Add colourblind accessibility features.
+- Add game stat tracking (using cookies).
+- Display code somewhere after a game conclusion modal displays.
+- Add dynamic tabindex configuration when enabling manual code peg input mode.
