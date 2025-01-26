@@ -5,7 +5,13 @@ import eslintPluginPrettier from "eslint-plugin-prettier";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+  {
+    languageOptions: { sourceType: "commonjs" },
+  },
+  {
+    files: ["js/**/*.js", "eslint.config.mjs"],
+    languageOptions: { sourceType: "module" },
+  },
   {
     languageOptions: {
       globals: {
@@ -17,6 +23,7 @@ export default [
           browser: "readonly",
           page: "readonly",
           context: "readonly",
+          jestPuppeteer: "readonly",
         },
       },
     },
