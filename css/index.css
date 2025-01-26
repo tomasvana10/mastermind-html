@@ -84,6 +84,10 @@ dialog {
   white-space: nowrap;
 }
 
+.mr-small {
+  margin-right: 0.35rem;
+}
+
 .btn:hover,
 .btn:focus {
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
@@ -128,8 +132,30 @@ button:focus {
   background-color: darkgreen;
 }
 
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+}
+
 #github-clickable:active {
   border-color: blue;
+}
+
+#code-peg-picker label {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#code-peg-picker label > span:first-child {
+  margin-right: 10px;
+}
+
+#code-peg-picker label span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 #header {
@@ -183,9 +209,10 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 1rem;
   height: 100%;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .game-slice {
@@ -200,6 +227,16 @@ button:focus {
   display: block;
   width: 100%;
   border-bottom: thin solid black;
+}
+
+.game-slice.active.manual .code-peg-holders .code-peg-holder {
+  background: repeating-linear-gradient(
+    135deg,
+    whitesmoke,
+    whitesmoke 10px,
+    gainsboro 10px,
+    gainsboro 20px
+  );
 }
 
 .code-peg-holders,
@@ -221,11 +258,10 @@ button:focus {
   align-items: center;
   place-content: center;
   background: gainsboro;
-  /* gainsboro -> gainsboro with 4% greater black value (CMYK) */
   background: linear-gradient(
     45deg,
-    rgba(209, 209, 209, 1) 0%,
-    rgba(220, 220, 220, 1) 100%
+    rgb(209, 209, 209) 0%,
+    rgb(232, 231, 231) 100%
   );
 }
 
@@ -268,6 +304,10 @@ button:focus {
   display: inline-block;
   position: relative;
   overflow: hidden;
+}
+
+.code-peg.manual {
+  scale: 1.15;
 }
 
 .code-peg::after {
@@ -326,6 +366,11 @@ button:focus {
   gap: 0.1rem;
 }
 
+#code-peg-picker .picker-wrapper {
+  overflow: scroll;
+  max-height: 50%;
+}
+
 #code-peg-picker .btn {
   width: 50%;
   place-self: center;
@@ -346,6 +391,36 @@ footer {
 hr {
   border-top: thin solid whitesmoke;
   margin: 10px 0px;
+}
+
+#settingsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#settingsForm button {
+  margin-bottom: 30px;
+}
+
+#settingsForm + div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 417px) {
+  #settingsForm + div {
+    flex-direction: column-reverse;
+  }
+}
+
+.footer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .revealUnder768 {
@@ -375,7 +450,7 @@ hr {
   }
 
   .revealUnder768 {
-    display: block;
+    display: inline-flex;
   }
 
   .revealAbove768 {
@@ -389,6 +464,10 @@ hr {
     width: 100%;
   }
 
+  #code-peg-picker label span {
+    margin-left: 0;
+  }
+
   #game {
     display: flex;
     flex-direction: column-reverse;
@@ -397,26 +476,21 @@ hr {
     margin: auto;
   }
 
-  #game-slices:nth-child(1) {
-    padding-top: 20px;
-  }
-
   #game-slices {
     flex-direction: column;
     align-items: center;
-    gap: 1em;
+    overflow-y: scroll;
   }
 
   .game-slice.active::before {
     content: "";
     display: block;
-    width: 50%;
-    height: 10%;
-    left: 42px;
+    width: 5px;
+    height: 50%;
+    left: -15px;
     position: absolute;
-    top: 107.5px;
     border-left: thick solid green;
-    border-right: thick solid green;
+    border-top: thick solid green;
     border-bottom: thick solid green;
   }
 
@@ -471,6 +545,11 @@ hr {
     justify-content: start;
   }
 
+  #game-slices,
+  #board {
+    overflow-x: hidden;
+  }
+
   #header {
     display: none;
   }
@@ -486,7 +565,12 @@ hr {
   }
 
   .game-slice:nth-child(1) {
-    margin-top: -40px;
+    margin-top: -10px;
+  }
+
+  #game-slices,
+  #board {
+    overflow-x: hidden;
   }
 
   .game-slice {
@@ -504,5 +588,15 @@ hr {
 @media (min-width: 768px) {
   #codemakerRevealedCode {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 355px) {
+  #code-peg-picker {
+    scale: 0.8;
+  }
+
+  #code-peg-picker .picker {
+    width: 150px;
   }
 }
