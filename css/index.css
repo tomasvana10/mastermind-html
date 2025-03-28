@@ -465,15 +465,15 @@ hr {
   gap: 0.5rem;
 }
 
-.revealUnder768 {
+.reveal-under-768 {
   display: none;
 }
 
-.revealAbove768 {
+.reveal-above-768 {
   display: inline-flex;
 }
 
-.codemakerRevealedCode {
+.codemaker-revealed-code {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -671,7 +671,7 @@ hr {
 }
 
 @media (min-width: 768px) {
-  .codemakerRevealedCode {
+  .codemaker-revealed-code {
     flex-direction: column;
   }
 }

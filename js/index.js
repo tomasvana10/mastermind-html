@@ -216,11 +216,12 @@ function applyButtonListeners() {
 function applyModalCloseButtonListeners() {
   MODALS.forEach(
     id =>
-      (document.getElementById(id).querySelector(".modalCloseButton").onclick =
-        () => {
-          document.getElementById(id).close();
-          modalOpen = false;
-        }),
+      (document
+        .getElementById(id)
+        .querySelector(".modal-close-button").onclick = () => {
+        document.getElementById(id).close();
+        modalOpen = false;
+      }),
   );
 }
 
@@ -530,7 +531,7 @@ function createKeyPeg(colour) {
 
 function createCodebreakerPegSequenceElement() {
   const div = document.createElement("div");
-  div.className = "codemakerRevealedCode";
+  div.className = "codemaker-revealed-code";
   for (const colour of codemakerCode) {
     div.appendChild(createCodePeg(colour));
   }
@@ -714,6 +715,7 @@ function submitGuess() {
   updateManualColourInputSelection("");
   const oldActiveGameSlice = getActiveGameSlice();
   activeGameSliceIndex++;
+
   if (evaluation.correctPositionAndColour === GUESS_SLOTS) {
     // won
     setAttemptsCountInWinModal();
@@ -724,7 +726,7 @@ function submitGuess() {
     confetti({ particleCount: 200, disableForReducedMotion: true });
   } else if (activeGameSliceIndex + 1 > GUESSES) {
     // lost
-    document.querySelector(".codemakerRevealedCode")?.remove();
+    document.querySelector(".codemaker-revealed-code")?.remove();
     failureDialog.showModal();
     modalOpen = true;
     failureDialog.insertBefore(
