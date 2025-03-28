@@ -10,7 +10,7 @@ describe("the html structure", () => {
 
   it("should have `GUESSES` amount of game slices", async () => {
     const gameSlices = await page.$eval(
-      "#game-slices",
+      "#gameSlices",
       container => container.children.length,
     );
     expect(gameSlices).toBe(GUESSES);

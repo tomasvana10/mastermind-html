@@ -283,6 +283,13 @@
         </div>
       </dialog>
       <dialog
+        id="statsDialog"
+        aria-label="statistics for mastermind-html player">
+        <h1>Your Statistics</h1>
+        <div id="statsDialogInsertionNode"></div>
+        <button class="modal-close-button btn">Close</button>
+      </dialog>
+      <dialog
         id="confirmationDialog"
         aria-label="mastermind-html confirmation modal">
         <div id="CdialogContent">
@@ -328,6 +335,10 @@
           </button>
           <button id="settingsButton" class="btn"
             ><i data-lucide="settings" class="mr-small"></i>Settings</button
+          >
+          <button id="statsButton" class="btn"
+            ><i data-lucide="file-chart-column" class="mr-small"></i
+            >Stats</button
           >
         </div>
       </footer>
