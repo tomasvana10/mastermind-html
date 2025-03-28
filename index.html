@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="header-end">
-            <button id="github-clickable" aria-label="button">
+            <button class="github-clickable" aria-label="button">
               <svg
                 aria-label="github logo"
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,15 +50,15 @@
       </div>
       <div id="game">
         <div id="board">
-          <div id="game-slices">
+          <div id="gameSlices">
             <div class="game-slice">
               <div class="code-peg-holders"> </div>
               <div class="key-peg-holders"> </div>
             </div>
           </div>
         </div>
-        <div id="user-interaction-container">
-          <div id="code-peg-picker" style="min-width: 150px">
+        <div id="userInteractionContainer">
+          <div id="codePegPicker" style="min-width: 150px">
             <label class="bold-subtitle">
               <span style="user-select: none">Picker</span>
               <span style="cursor: pointer">
@@ -70,14 +70,14 @@
             <!--prettier-ignore-->
             <button class="btn btn-error revealAbove768" id="deleteCodePegButton1">Delete</button>
           </div>
-          <div id="other-options">
+          <div id="otherOptions">
             <label class="bold-subtitle" style="user-select: none"
               >Actions</label
             >
-            <div id="actions-container">
-              <div id="new-game-row">
+            <div id="actionsContainer">
+              <div id="newGameRow">
                 <button
-                  class="code-view-container"
+                  id="codeViewContainer"
                   aria-label="check the code from this game">
                   <img
                     src="assets/favicon.png"
@@ -272,7 +272,7 @@
             class="btn btn-success"
             value="Submit"
             id="settingsFormButton"
-            >Submit</button
+            >Save</button
           >
         </form>
         <div>

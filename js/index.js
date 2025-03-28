@@ -200,7 +200,7 @@ function applyButtonListeners() {
     document.getElementById("guessesInput").blur();
     modalOpen = true;
   };
-  document.querySelector(".code-view-container").onclick = () => {
+  document.getElementById("codeViewContainer").onclick = () => {
     codeViewDialog.showModal();
     modalOpen = true;
   };
@@ -326,7 +326,7 @@ function submitSettingsForm() {
 }
 
 function createCodePickerPegs() {
-  const picker = document.querySelector("#code-peg-picker .picker");
+  const picker = document.querySelector("#codePegPicker .picker");
   for (const colour of CODE_PEG_COLOURS)
     picker.appendChild(
       createCodePeg(colour, true, event => addCodePeg(colour, event), true),
@@ -335,7 +335,7 @@ function createCodePickerPegs() {
 
 function makeGithubLinksClickable() {
   document
-    .querySelectorAll("#github-clickable, #githubButton")
+    .querySelectorAll(".github-clickable")
     .forEach(node =>
       node.addEventListener("click", () =>
         window.open(MY_GITHUB, "_blank").focus(),
@@ -351,7 +351,7 @@ function createEnumeration(index) {
 }
 
 function setGameSlices() {
-  const slices = document.getElementById("game-slices");
+  const slices = document.getElementById("gameSlices");
   const firstSlice = slices.children[0];
   firstSlice.id = "game-slice-0";
   firstSlice.append(createEnumeration(1));
@@ -401,7 +401,7 @@ function setKeyPegHolders() {
 }
 
 function updateGameSlicesBasedOnOverflow() {
-  const slices = document.getElementById("game-slices");
+  const slices = document.getElementById("gameSlices");
   if (hasOverflow(slices, true)) {
     slices.style.justifyContent = "start";
     slices.style.paddingLeft = "10px";
@@ -414,7 +414,7 @@ function updateGameSlicesBasedOnOverflow() {
 }
 
 function bindScrollToGameSlices() {
-  const slices = document.getElementById("game-slices");
+  const slices = document.getElementById("gameSlices");
   slices.onwheel = event => {
     if (event.ctrlKey) return; // allow event to pass, as the user is likely zooming with ctrl + scroll
     if (
@@ -434,7 +434,7 @@ function bindScrollToGameSlices() {
 }
 
 function unbindScrollFromGameSlices() {
-  const slices = document.getElementById("game-slices");
+  const slices = document.getElementById("gameSlices");
   slices.onwheel = () => {};
 }
 
@@ -551,7 +551,7 @@ function getActiveKeyPegHolders() {
 
 function scrollActiveGameSliceIntoView() {
   const onPhone = isOnPhone();
-  if (hasOverflow(document.getElementById("game-slices", !onPhone, onPhone)))
+  if (hasOverflow(document.getElementById("gameSlices", !onPhone, onPhone)))
     getActiveGameSlice().scrollIntoView({
       behavior: "smooth",
       block: "nearest",
@@ -577,7 +577,7 @@ function setAttemptsCountInWinModal() {
 }
 
 function toggleCodeViewButton(state) {
-  const view = document.querySelector(".code-view-container");
+  const view = document.getElementById("codeViewContainer");
   if (state) {
     codeViewDialog.insertBefore(
       createCodebreakerPegSequenceElement(),
