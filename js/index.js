@@ -131,10 +131,8 @@ window.onload = () => {
   manualInputCheckbox = document.getElementById("manualInputCheckbox");
   manualInputCheckbox.checked = false;
   // prevent clicks on "Code Peg Picker" text modifying the manualInputCheckbox state
-  document.querySelector(".bold-subtitle > span").onclick = event => {
-    event.preventDefault();
-  };
 
+  applyMediaBreakpointToCodePicker();
   makeGithubLinksClickable();
   updateGameSlicesBasedOnOverflow();
   createCodePickerPegs();
@@ -247,6 +245,26 @@ function applyFormSubmitListeners() {
   };
 }
 
+function applyMediaBreakpointToCodePicker() {
+  const style = document.createElement("style");
+  style.textContent = `
+    @media (max-width: ${CODE_PEG_COLOURS.length >= 7 ? 466 : 390}px) {
+      #codePegPicker, #otherOptions {
+        scale: 0.8;
+      }
+
+      #userInteractionContainer {
+        gap: 0;
+      }
+
+      #codePegPicker .picker {
+        width: 150px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function openConfirmationDialog(
   onConfirm,
   buttonText = ["No", "Yes"],
@@ -332,7 +350,7 @@ function submitSettingsForm() {
 }
 
 function createCodePickerPegs() {
-  const picker = document.querySelector("#codePegPicker .picker");
+  const picker = document.querySelector(".picker");
   for (const colour of CODE_PEG_COLOURS)
     picker.appendChild(
       createCodePeg(colour, true, event => addCodePeg(colour, event), true),
@@ -349,24 +367,15 @@ function makeGithubLinksClickable() {
     );
 }
 
-function createEnumeration(index) {
-  const enumeration = document.createElement("div");
-  enumeration.className = "enumeration";
-  enumeration.innerHTML = `${index}`;
-  return enumeration;
-}
-
 function setGameSlices() {
   const slices = document.getElementById("gameSlices");
   const firstSlice = slices.children[0];
   firstSlice.id = "game-slice-0";
-  firstSlice.append(createEnumeration(1));
 
   for (let i = 1; i < GUESSES; i++) {
     const newSlice = firstSlice.cloneNode(true);
     newSlice.id = `game-slice-${i}`;
     slices.appendChild(newSlice);
-    newSlice.querySelector(".enumeration").innerHTML = `${i + 1}`;
   }
 }
 
@@ -502,10 +511,6 @@ function createCodePeg(
     colour,
     -30,
   )} 70%, ${shadeColour(colour, -50)})`;
-  peg.style.boxShadow = `
-    -3px 3px 10px 2px rgba(0, 0, 0, 0.6),
-    2px -2px 8px rgba(255, 255, 255, 0.5) inset
-  `;
   if (cursorPointer) peg.style.cursor = "pointer";
   if (onClick) peg.onclick = event => onClick(event);
   if (tabIndex) {
@@ -526,10 +531,6 @@ function createKeyPeg(colour) {
     colour,
     -40,
   )} 150%, ${shadeColour(colour, -50)})`;
-  peg.style.boxShadow = `
-    -3px 3px 9px 2px rgba(0, 0, 0, 0.6),
-    1px -1px 4px rgba(255, 255, 255, 0.5) inset
-  `;
 
   return peg;
 }

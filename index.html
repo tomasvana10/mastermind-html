@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js "></script>
   </head>
+
   <body>
     <script type="module" src="js/index.js"></script>
     <div id="content">
@@ -54,18 +55,24 @@
             <div class="game-slice">
               <div class="code-peg-holders"> </div>
               <div class="key-peg-holders"> </div>
+              <div class="enumeration"></div>
             </div>
           </div>
         </div>
         <div id="userInteractionContainer">
           <div id="codePegPicker" style="min-width: 150px">
-            <label class="bold-subtitle">
-              <span style="user-select: none">Picker</span>
-              <span style="cursor: pointer">
-                <input type="checkbox" id="manualInputCheckbox" />
-                <i data-lucide="wrench"></i>
-              </span>
-            </label>
+            <label
+              class="bold-subtitle"
+              style="user-select: none"
+              id="manualInputLabel"
+              for="manualInputCheckbox"
+              ><i data-lucide="wrench"></i>Manual Input
+              <input
+                style="margin-left: 0.25rem"
+                type="checkbox"
+                id="manualInputCheckbox"
+            /></label>
+
             <div class="picker"></div>
             <!--prettier-ignore-->
             <button class="btn btn-error reveal-above-768" id="deleteCodePegButton1">Delete</button>
@@ -132,8 +139,8 @@
           <li>New Game: <kbd>SHIFT</kbd> + <kbd>ENTER</kbd></li>
           <li
             >Toggle <i>Manual Peg Input Mode</i>: <kbd>SHIFT</kbd> +
-            <kbd>CLICK</kbd> (on code peg of choice)</li
-          >
+            <kbd>CLICK</kbd> (on code peg of choice)
+          </li>
         </ul>
         <p>
           To further improve accessibility, all clickable elements are focusable
@@ -267,18 +274,32 @@
               >) after first input</label
             >
           </div>
+        </form>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            gap: 0.5rem;
+          ">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: 0.5rem;
+            ">
+            <button class="modal-close-button btn">Close</button>
+            <button class="btn btn-error" id="resetUserSettingsButton"
+              >Reset To Defaults</button
+            >
+          </div>
           <button
             type="submit"
             class="btn btn-success"
             value="Submit"
             id="settingsFormButton"
             >Save</button
-          >
-        </form>
-        <div>
-          <button class="modal-close-button btn">Close</button>
-          <button class="btn btn-error" id="resetUserSettingsButton"
-            >Reset To Defaults</button
           >
         </div>
       </dialog>
@@ -345,7 +366,15 @@
     </div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      lucide.createIcons();
+      lucide.createIcons({
+        icons: {
+          Settings: lucide.Settings,
+          FileChartColumn: lucide.FileChartColumn,
+          Wrench: lucide.Wrench,
+          Info: lucide.Info,
+          Keyboard: lucide.Keyboard,
+        },
+      });
     </script>
   </body>
 </html>
