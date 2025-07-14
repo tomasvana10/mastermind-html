@@ -438,6 +438,8 @@ input[type="checkbox"] {
 
 #codePegPicker .picker {
   display: flex;
+  max-width: 300px;
+  margin: 0 auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -717,12 +719,16 @@ hr {
   }
 }
 
-@media (max-width: 256px) {
+@media (max-width: 280px) {
   #userInteractionContainer {
     flex-direction: column;
     overflow: scroll;
     height: fit-content;
     padding: 0;
+  }
+
+  #userInteractionContainer > * {
+    width: 5000px;
   }
 
   .game-slice {
