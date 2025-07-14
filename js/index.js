@@ -298,10 +298,13 @@ function openConfirmationDialog(
 
 function applyCSSStyles() {
   if ((window.innerWidth < 427 || !isOnPhone()) && GUESS_SLOTS > 4) {
-    const scale = window.innerWidth < 427 ? "0.4" : "0.8";
-    document
-      .querySelectorAll(".game-slice")
-      .forEach(slice => (slice.style.scale = scale));
+    const scale =
+      window.innerWidth < 427 ? (GUESS_SLOTS === 5 ? "0.8" : "0.75") : "0.8";
+    const margin = GUESS_SLOTS === 5 ? "-56px" : "-60px";
+    document.querySelectorAll(".game-slice").forEach(slice => {
+      slice.style.scale = scale;
+      slice.style.marginBottom = margin;
+    });
   }
   if (GUESS_SLOTS > 4 && isOnPhone()) {
     document
