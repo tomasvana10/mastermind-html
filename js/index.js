@@ -178,7 +178,6 @@ document.onkeydown = event => {
 /* DOM-RELATED FUNCTIONS */
 function applyButtonListeners() {
   document.getElementById("deleteCodePegButton1").onclick = deleteCodePeg;
-  document.getElementById("deleteCodePegButton2").onclick = deleteCodePeg;
   document.getElementById("submitGuessButton").onclick = submitGuess;
   document.getElementById("newGameButton1").onclick = () => newGame();
   [

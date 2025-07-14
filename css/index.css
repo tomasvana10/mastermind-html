@@ -495,14 +495,6 @@ hr {
   gap: 0.5rem;
 }
 
-.reveal-under-768 {
-  display: none;
-}
-
-.reveal-above-768 {
-  display: inline-flex;
-}
-
 .codemaker-revealed-code {
   display: flex;
   flex-direction: row;
@@ -551,6 +543,18 @@ hr {
   }
 }
 
+.footer-transferred-content {
+  display: none;
+}
+
+.reveal-under-768 {
+  display: none;
+}
+
+.reveal-above-768 {
+  display: inline-flex;
+}
+
 /* responsive design for phones */
 @media (max-width: 768px) {
   html {
@@ -561,11 +565,11 @@ hr {
     padding: 20px;
   }
 
-  .revealUnder768 {
+  .reveal-under-768 {
     display: inline-flex;
   }
 
-  .revealAbove768 {
+  .reveal-above-768 {
     display: none;
   }
 
